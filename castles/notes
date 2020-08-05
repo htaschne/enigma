@@ -1,0 +1,55 @@
+
+
+                              EVERY KING IS GREEDY
+                       ---------------------------------                        
+
+
+INTRO
+-----------
+
+PROBLEM
+-----------
+
+
+STRATEGY FOR THE EXAMPLE GIVEN
+-----------
+
+// IMPROVE: this can be better. explain what means local minimum (of what?). and
+// why this local minimum would favor our main goal of defeating the maximum
+number of castles. Let's try being greedy and assume the local minimum to be the
+best option in order to maximize the number of defeated castles.
+
+We look at the road map so far and we sort the possible targets by their army
+size. we visualize this in the form <castle id>: <army size>. The *() marks the
+castle we're in at the moment.
+
+               *(0:144)     { 5: 11, 6: 25, 8: 35, ..., 7: 34 }
+
+ As we're being greedy we pick the castle 5 to attack.
+
+ One big army is stronger than two halves of it. And as so we leave 50 of our
+men home and move the rest as a unit. For doing so our army size is 94. As we
+defeat the 5's army our own is reduced by 22, so we're now 72. Cheerful by the
+recent win we march to next castle, which is castle 6. As we leave 50 man in
+castle 5 we look at the map we see the following:
+                             
+               0: 50 { 5: 50,   *(72) X 6: 25   , 8: 35, ..., 7: 34 }
+
+  Leaving 50 of our men behind means the rest of our power is 22 men. And that
+makes the biggest army we can defeat a 11 man army. In the middle of the way
+towards castle 6 we realize this and we abort the mission.
+
+  The maximum number of castle we can take in the region, leaving 50 men as
+guards in each castle we leave behind, is 1. That means that no matter which
+castle of those we can defeat we pick, after the battle we're reduced to the
+point we can no longer battle any other.
+
+
+TECHNICAL STRATEGY
+-----------
+
+EXAMPLE
+-----------
+
+CONCLUSION
+-----------
