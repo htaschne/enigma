@@ -16,7 +16,8 @@ STRATEGY FOR THE EXAMPLE GIVEN
 
 // IMPROVE: this can be better. explain what means local minimum (of what?). and
 // why this local minimum would favor our main goal of defeating the maximum
-number of castles. Let's try being greedy and assume the local minimum to be the
+// number of castles.
+  Let's try being greedy and assume the local minimum to be the
 best option in order to maximize the number of defeated castles.
 
 We look at the road map so far and we sort the possible targets by their army
