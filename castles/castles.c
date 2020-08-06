@@ -12,17 +12,23 @@ void dfs(int *C, int *best, int* used, int* castles, int *edges, int depth, int 
 
   int cost = 0;
   int prev = 0;
-  for (int i = 0; i < *C; ++i)
-    if ((edges[*C*castle + i] && castle != i) && (next_castles[castle] - ((2*next_castles[i]) + 50) >= 0 && used[i] == 0)) {
+  for (int i = 0; i < *C; ++i) {
+    int has_road = edges[*C*castle + i];
+    int enemy_beatable = next_castles[castle] - ((2*next_castles[i]) + 50) >= 0;
+    int go_backwards = used[i];
+    if (has_road && enemy_beatable && !go_backwards) {
         cost = (2*next_castles[i]) + 50;
         prev = next_castles[castle];
         next_castles[castle] -= cost;
         used[i] = 1;
         dfs(C, best, used, next_castles, edges, depth + 1, next_castles[i]);
-        next_castles[castle] += cost; // reset for next iteration
+
+        // reset for next iteration
+        next_castles[castle] += cost;
         used[i] = 0;
         assert(next_castles[castle] == prev);
-      }
+    }
+  }
 
   free(next_castles);
 }
