@@ -11,12 +11,11 @@ void dfs(int *C, int *best, int* used, int* castles, int *edges, int depth, int 
   memcpy(next_castles, castles, sizeof(int) * (*C));
 
   int cost = 0;
-  for (int i = 0; i < *C; ++i) {
-    if (edges[*C*castle + i] && castle != i) {
-      if (next_castles[castle] - ((2*next_castles[i]) + 50) >= 0 && used[i] == 0) {
+  int prev = 0;
+  for (int i = 0; i < *C; ++i)
+    if ((edges[*C*castle + i] && castle != i) && (next_castles[castle] - ((2*next_castles[i]) + 50) >= 0 && used[i] == 0)) {
         cost = (2*next_castles[i]) + 50;
-        int prev = next_castles[castle];
-        printf("army: %d, target's army: %d, cost: %d, remains: %d\n", prev, next_castles[i], cost, prev - cost);
+        prev = next_castles[castle];
         next_castles[castle] -= cost;
         used[i] = 1;
         dfs(C, best, used, next_castles, edges, depth + 1, next_castles[i]);
@@ -24,8 +23,6 @@ void dfs(int *C, int *best, int* used, int* castles, int *edges, int depth, int 
         used[i] = 0;
         assert(next_castles[castle] == prev);
       }
-    }
-  }
 
   free(next_castles);
 }
