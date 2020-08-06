@@ -15,6 +15,7 @@ int comp(const void *a, const void *b) {
 
 int main() {
   int64_t n;
+  // HACK: get the number of lines in the input. 
   scanf("%lld", &n);
 
   interval *intervals = (interval*) malloc(sizeof(interval) * n);
@@ -46,5 +47,6 @@ int main() {
     }
   }
 
+  // print the last interval, if it exists.
   if (changed) printf("%lld-%lld\n", current_lower, current_upper);
 }
