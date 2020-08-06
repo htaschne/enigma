@@ -1,8 +1,0 @@
-#!/usr/local/bin/python3
-
-import os
-import sys
-
-os.system('clear')
-os.system('g++ quick.cc -o quick')
-os.system('./quick < 0.in')
