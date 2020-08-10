@@ -1,0 +1,39 @@
+casos/casoj3.txt
+Quantidade de nodos: 3
+Altura da arvore: 1
+Soma total dos nodos: 322
+
+casos/casoj5.txt
+Quantidade de nodos: 22
+Altura da arvore: 4
+Soma total dos nodos: 3083
+
+casos/casoj7.txt
+Quantidade de nodos: 172
+Altura da arvore: 6
+Soma total dos nodos: 37409
+
+casos/casoj9.txt
+Quantidade de nodos: 655
+Altura da arvore: 8
+Soma total dos nodos: 163011
+
+casos/casoj10.txt
+Quantidade de nodos: 2688
+Altura da arvore: 9
+Soma total dos nodos: 720004
+
+casos/casoj11.txt
+Quantidade de nodos: 2789
+Altura da arvore: 10
+Soma total dos nodos: 839609
+
+casos/casoj12.txt
+Quantidade de nodos: 114484
+Altura da arvore: 11
+Soma total dos nodos: 36913787
+
+casos/casoj13.txt
+Quantidade de nodos: 1676084
+Altura da arvore: 12
+Soma total dos nodos: 580517879
