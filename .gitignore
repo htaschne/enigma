@@ -1,4 +1,9 @@
 *.DS_Store
 *.out
 *.swp*
+*.png
+*.class
+*.java
 include
+__pycache__
+casos/
