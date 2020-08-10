@@ -18,10 +18,7 @@ void explora(int gen, int *final_gen, int *total_val, int *qtd_nodes) {
 }
 
 int main() {
-  int final_gen = 0;
-  int total_val = 0;
-  int qtd_nodes = 0;
-
+  int final_gen = 0; int total_val = 0; int qtd_nodes = 0;
 	explora(0, &final_gen, &total_val, &qtd_nodes);
 	printf("Quantidade de nodos: %d\n", qtd_nodes);
 	printf("Altura da arvore: %d\n", final_gen);
