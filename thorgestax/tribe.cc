@@ -4,19 +4,17 @@
 #include <vector>
 #include <iostream>
 
-using namespace std;
-
 class warrior {
 public:
   int64_t fortune;
-  string name;
-  warrior(string n, int64_t f) {
+  std::string name;
+  warrior(std::string n, int64_t f) {
     fortune = f;
     name = n;
   }
 };
 
-void explore(string target_name, int64_t amount, map<string, vector<warrior>> &list_sons, string &name, int64_t *best) {
+void explore(std::string target_name, int64_t amount, map<std::string, std::vector<warrior>> &list_sons, std::string &name, int64_t *best) {
   if (list_sons[target_name].size() == 0) {
     if (amount > *best) {
       *best = amount;
@@ -34,10 +32,10 @@ int main() {
   int64_t n;
   cin >> n;
 
-  set<string> sons;
-  set<string> parents;
-  map<string, vector<warrior>> list_sons;
-  string p; string f; int64_t l;
+  std::set<std::string> sons;
+  std::set<std::string> parents;
+  std::map<std::string, std::vector<warrior>> list_sons;
+  std::string p; std::string f; int64_t l;
 
   while (cin >> p >> f >> l) {
     parents.insert(p);
@@ -45,13 +43,13 @@ int main() {
     list_sons[p].push_back(warrior(f, l));
   }
 
-  string root;
+  std::string root;
   for (auto& p : parents)
     if (!sons.count(p))
       root = p;
   
   int64_t best = 0;
-  string name = "";
+  std::string name = "";
   explore(root, n, list_sons, name, &best);
-  cout << name << ": " << best << endl;
+  std::cout << name << ": " << best << std::endl;
 }
