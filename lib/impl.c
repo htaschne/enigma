@@ -1,6 +1,6 @@
 
 ///
-/// Author: neyo suoya
+/// Author: Pedro Schneider
 /// Date: August 10th, 2020
 /// Toy implementation for quicksort.
 ///   reference: https://en.wikipedia.org/wiki/Quicksort
