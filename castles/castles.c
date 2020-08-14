@@ -17,7 +17,7 @@ void dfs(int *C, int *best, int* used, int* castles, int *edges, int depth, int 
     int enemy_beatable = next_castles[castle] - ((2*next_castles[i]) + 50) >= 0;
     int go_backwards = used[i];
     if (has_road && enemy_beatable && !go_backwards) {
-        cost = (2*next_castles[i]) + 50;
+        cost = 2 * next_castles[i] + 50;
         prev = next_castles[castle];
         next_castles[castle] -= cost;
         used[i] = 1;
