@@ -4,15 +4,6 @@
 
 int Mat[MAX][MAX] = {};
 
-void imprime(char Matriz[MAX][MAX]) {
-  int i, j;
-  for (i = 0; i < MAX; ++i) {
-    for (j = 0; j < MAX; ++j)
-      printf("%c", ( Matriz[j][i] == 0 ? ' ' : Matriz[j][i] ) );
-    printf("\n");
-  }
-}
-
 int abs(int a) { return a > 0 ? a : -a; }
 
 int dist(int posX, int posY) {
