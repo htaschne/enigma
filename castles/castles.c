@@ -4,7 +4,7 @@
 #include <stdlib.h>  // malloc free exit
 #include <assert.h>  // assert
 
-void dfs(int *C, int *best, int* used, int* castles, int *edges, int depth, int castle) {
+void dfs(int *C, int *best, int *used, int *castles, int *edges, int depth, int castle) {
   if (*best < depth) { *best = depth; }
 
   int *next_castles = (int*) malloc(sizeof(int) * (*C));
