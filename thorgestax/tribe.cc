@@ -14,7 +14,7 @@ public:
   }
 };
 
-void explore(std::string target_name, int64_t amount, map<std::string, std::vector<warrior>> &list_sons, std::string &name, int64_t *best) {
+void explore(std::string target_name, int64_t amount, std::map<std::string, std::vector<warrior>> &list_sons, std::string &name, int64_t *best) {
   if (list_sons[target_name].size() == 0) {
     if (amount > *best) {
       *best = amount;
@@ -30,14 +30,14 @@ void explore(std::string target_name, int64_t amount, map<std::string, std::vect
 
 int main() {
   int64_t n;
-  cin >> n;
+  std::cin >> n;
 
   std::set<std::string> sons;
   std::set<std::string> parents;
   std::map<std::string, std::vector<warrior>> list_sons;
   std::string p; std::string f; int64_t l;
 
-  while (cin >> p >> f >> l) {
+  while (std::cin >> p >> f >> l) {
     parents.insert(p);
     sons.insert(f);
     list_sons[p].push_back(warrior(f, l));
