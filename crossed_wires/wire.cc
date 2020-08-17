@@ -25,8 +25,7 @@ int main() {
     while (qt--) {
       pos = pos + next;
       dist++;
-      if (!w1.count(pos))
-        w1[pos] = dist;
+      if (!w1.count(pos)) w1[pos] = dist;
     }
   }
 
@@ -37,9 +36,8 @@ int main() {
     while (qt--) {
       pos = pos + next;
       dist++;
-      if (w1.count(pos))
-        if (w1[pos] + dist < min)
-          min = w1[pos] + dist;
+      if (w1.count(pos) && w1[pos] + dist < min)
+        min = w1[pos] + dist;
     }
   }
   printf("%d\n", min);
