@@ -62,4 +62,3 @@ int main() {
   dfs(&C, &best, used, castles, edges, 0, 0);
   printf("best: %d\n", best);
 }
-
