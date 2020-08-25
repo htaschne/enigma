@@ -4,7 +4,7 @@
 #include <stdlib.h>  // malloc free exit
 #include <assert.h>  // assert
 
-void dfs(int *C, int *best, int *used, int *castles, int *edges, int depth, int castle) {
+void dfs(size_t *C, int *best, int *used, int *castles, int *edges, int depth, int castle) {
   if (*best < depth) { *best = depth; }
 
   int *next_castles = (int*) malloc(sizeof(int) * (*C));
@@ -12,8 +12,8 @@ void dfs(int *C, int *best, int *used, int *castles, int *edges, int depth, int 
 
   int cost = 0;
   int prev = 0;
-  for (int i = 0; i < *C; ++i) {
-    int has_road = edges[*C*castle + i];
+  for (int i = 0; i < (int)*C; ++i) {
+    int has_road = edges[(int)*C*castle + i];
     int enemy_beatable = next_castles[castle] - ((2*next_castles[i]) + 50) >= 0;
     int go_backwards = used[i];
     if (has_road && enemy_beatable && !go_backwards) {
@@ -35,30 +35,30 @@ void dfs(int *C, int *best, int *used, int *castles, int *edges, int depth, int 
 
 int main() {
   /// READ KING'S CASTLE'S ATTRIBUTES.
-  int S; int C; int E;
+  int S; size_t C; int E;
   int best = 0;
-  scanf("%d %d %d", &S, &C, &E);
+  scanf("%d %ld %d", &S, &C, &E);
   C++;
 
   /// SAVE EACH CASTLE'S ARMY. i.e: castle[0] = 144 (or S);
   int *castles = (int*) malloc(sizeof(int) * C);
   castles[0] = S;
   int castle_id; int army;
-  for (int i = 1; i < C; ++i) {
+  for (size_t i = 1; i < C; ++i) {
     scanf("%d %d", &castle_id, &army);
     castles[castle_id] = army;
   }
 
   /// READING POSSIBLE PATHS (EDGES).
   int departure; int arrivals;
-  int *edges = calloc(C*C, sizeof(edges[0]));
+  int *edges = (int*) calloc(C*C, sizeof(edges[0]));
   for (int i = 0; i < E; ++i) {
     scanf("%d %d", &departure, &arrivals);
-    edges[C*departure + arrivals]++;
-    edges[C*arrivals + departure]++;
+    edges[(int)C*departure + arrivals]++;
+    edges[(int)C*arrivals + departure]++;
   }
 
-  int *used = calloc(C, sizeof(int));
+  int *used = (int*) calloc(C, sizeof(int));
   dfs(&C, &best, used, castles, edges, 0, 0);
   printf("best: %d\n", best);
 }
