@@ -1,6 +1,6 @@
-#include <cstdio>
-#include <array>
 #include <map>
+#include <array>
+#include <cstdio>
 #include <limits>
 
 using namespace std;
@@ -15,12 +15,12 @@ T operator+(const T& a1, const T& a2) {
 
 int main() {
   map<char, array<int, 2>> value = { {'L', {-1, 0}}, {'R', {1,  0}},
-                                     {'U', { 0, 1}}, {'D', {0, -1}} }; 
+                                     {'U', { 0, 1}}, {'D', {0, -1}} };
   map<array<int, 2>, int> w1;
   array<int, 2> pos = { 0, 0 };
   array<int, 2> next;
   int qt, dist = 0; char dir;
-  while (scanf("%c%d,", &dir, &qt) == 2) {
+  while ( scanf("%c%d,", &dir, &qt) == 2 ) {
     next = value[dir];
     while (qt--) {
       pos = pos + next;
@@ -31,7 +31,7 @@ int main() {
 
   pos = { 0, 0 }; dist = 0;
   int min = numeric_limits<int>::max();
-  while (scanf("%c%d,", &dir, &qt) == 2) {
+  while ( scanf("%c%d,", &dir, &qt) == 2 ) {
     next = value[dir];
     while (qt--) {
       pos = pos + next;

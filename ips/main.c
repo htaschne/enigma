@@ -15,7 +15,7 @@ int comp(const void *a, const void *b) {
 
 int main() {
   int64_t n;
-  // HACK: get the number of lines in the input. 
+  // HACK: get the number of lines in the input
   scanf("%lld", &n);
 
   interval *intervals = (interval*) malloc(sizeof(interval) * n);

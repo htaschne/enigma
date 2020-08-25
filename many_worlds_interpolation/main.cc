@@ -12,20 +12,20 @@ map<char, pair<int, int>> special_keys;
 
 // parsing input into globals
 void readmap() {
-  string line;
   int y = 0;
+  string line;
   while (cin >> line) {
     lines.push_back(line);
     for (int x = 0; x < line.size(); ++x)
-      if (line[x] != '.') special_keys[line[x]] = make_pair(x, y);
-
+      if (line[x] != '.') // should we check for walls as well?
+        special_keys[line[x]] = make_pair(x, y);
     y++;
   }
   size_x = lines[0].size();
   size_y = lines.size();
 }
 
-// dp?
+// dp? maybe just BFS or A-star
 void solve(int px, int py) {
 }
 
