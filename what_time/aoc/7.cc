@@ -1,13 +1,5 @@
 
-#include <cstdio>
-#include <string>
-#include <iostream>
-#include <vector>
-#include <map>
-#include <set>
-#include <algorithm>
-#include <vector>
-#include <iterator>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -36,7 +28,7 @@ int main() {
   auto it = S.begin();
   while ( !S.empty() ) {
     char n = *it;
-    L.push_back(n);
+    L.emplace_back(*n);
     cout << n << endl;
     ++it;
     if (it == S.end()) it = S.begin();

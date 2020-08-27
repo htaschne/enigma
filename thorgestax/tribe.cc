@@ -47,7 +47,6 @@ int main() {
   for (auto& p : parents)
     if (!sons.count(p))
       root = p;
-  
   int64_t best = 0;
   std::string name = "";
   explore(root, n, list_sons, name, &best);

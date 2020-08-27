@@ -1,7 +1,7 @@
 
 
                               EVERY KING IS GREEDY
-                       ---------------------------------                        
+                       ---------------------------------
 
 
 INTRO
@@ -34,7 +34,7 @@ main army, and move the rest as a unit. For doing so our army size is 94. As we
 defeat the 5's army our own is reduced by 22, so we're now 72. Cheerful by the
 recent win we march to next castle, which is castle 6. As we leave 50 man in
 castle 5 we look at the map we see the following:
-                             
+
                0: 50 { 5: 50,   *(72) X 6: 25   , 8: 35, ..., 7: 34 }
 
   Leaving 50 of our men behind means the rest of our power is 22 men. And that

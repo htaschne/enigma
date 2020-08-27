@@ -9,7 +9,6 @@ def pop_max(lst):
       index_maior = i
   return lst.pop(index_maior)
 
-
 from collections import defaultdict
 
 custos = {}
@@ -26,7 +25,7 @@ for i, line in enumerate(open('input').readlines()):
   p2, t2 = raw2.split('_')
   t1 = int(t1)
   t2 = int(t2)
-  nodos[p1].append(p2) 
+  nodos[p1].append(p2)
   custos[p1] = t1
   custos[p2] = t2
 
