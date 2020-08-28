@@ -1,4 +1,3 @@
-
 #include <stdio.h>   // printf scanf
 #include <string.h>  // memcpy
 #include <stdlib.h>  // malloc free exit
@@ -17,16 +16,17 @@ void dfs(size_t *C, int *best, int *used, int *castles, int *edges, int depth, i
     int enemy_beatable = next_castles[castle] - ((2*next_castles[i]) + 50) >= 0;
     int go_backwards = used[i];
     if (has_road && enemy_beatable && !go_backwards) {
-        cost = 2 * next_castles[i] + 50;
-        prev = next_castles[castle];
-        next_castles[castle] -= cost;
-        used[i] = 1;
-        dfs(C, best, used, next_castles, edges, depth + 1, next_castles[i]);
+      // apply the cost to the map and recurse into
+      cost = 2 * next_castles[i] + 50;
+      prev = next_castles[castle];
+      next_castles[castle] -= cost;
+      used[i] = 1;
+      dfs(C, best, used, next_castles, edges, depth + 1, next_castles[i]);
 
-        // reset for next iteration
-        next_castles[castle] += cost;
-        used[i] = 0;
-        assert(next_castles[castle] == prev);
+      // reset for next iteration
+      next_castles[castle] += cost;
+      used[i] = 0;
+      assert(next_castles[castle] == prev);
     }
   }
 
