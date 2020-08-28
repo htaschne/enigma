@@ -6,7 +6,7 @@
 using namespace std;
 
 // globals
-int size_x; int size_y;
+size_t size_x; size_t size_y;
 vector<string> lines;
 map<char, pair<int, int>> special_keys;
 
@@ -16,7 +16,7 @@ void readmap() {
   string line;
   while (cin >> line) {
     lines.push_back(line);
-    for (int x = 0; x < line.size(); ++x)
+    for (size_t x = 0; x < line.size(); ++x)
       if (line[x] != '.') // should we check for walls as well?
         special_keys[line[x]] = make_pair(x, y);
     y++;
