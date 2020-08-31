@@ -47,6 +47,17 @@ vector<tuple<int, int, char>> neighborhood(int x, int y, int size_x, int size_y,
 
 int bfs(int x, int y, int size_x, int size_y, vector<string> &lines) {
 	set<tuple<int, int, char>> seen;
+
+	// // why won't this works?
+	// auto neighborhood = [&] (int x, int y, int size_x, int size_y, vector<string> &lines) -> vector<tuple<int, int, char>> {
+	// 	vector<tuple<int, int, char>> ret;
+	// 	if ( x - 1 > 0      && lines[y][x - 1] != '#' )  ret.push_back(make_tuple(x - 1, y, lines[y][x - 1]));
+	// 	if ( x + 1 < size_x && lines[y][x + 1] != '#' )  ret.push_back(make_tuple(x + 1, y, lines[y][x + 1]));
+	// 	if ( y - 1 > 0      && lines[y - 1][x] != '#' )  ret.push_back(make_tuple(x, y - 1, lines[y - 1][x]));
+	// 	if ( y + 1 < size_y && lines[y + 1][x] != '#' )  ret.push_back(make_tuple(x, y + 1, lines[y + 1][x]));
+	// 	return ret;
+	// };
+
 	auto neighbors = neighborhood(x, y, size_x, size_y, lines);
 	vector<tuple<int, int, char>> Q;
 	for (auto &p : neighbors)
@@ -58,7 +69,7 @@ int bfs(int x, int y, int size_x, int size_y, vector<string> &lines) {
 		for (int i = 0; i < Q.size(); i++) {
 			auto n = Q[i];
 			if (get<2>(n) == 'B') {
-				//cout << get<0>(n) << " " << get<1> (n) << endl;
+				cout << get<0>(n) << " " << get<1> (n) << endl;
 				return depth;
 			}
 			if (seen.count(n))
