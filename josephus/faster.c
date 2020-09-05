@@ -14,7 +14,7 @@ bool done(char *str, int size) {
   return true;
 }
 
-bool simula(char *str, int size, int *jump) {
+bool simula(char *str, int size, int knife_position, int *jump) {
   // # s=str, k=knife_position, j=jump_size
   // def sim(s,k,j):
   //   #print(s,k,j)
@@ -23,17 +23,24 @@ bool simula(char *str, int size, int *jump) {
   //   else:
   //     return False
 
-  int knife_position = 0;
   if (done(str, size)) {
     return true;
   }
 
   int killpos = (knife_position + *jump) % size;
+  //   if s[killpos] == '1':
   if (str[killpos] == '1') {
-    //   if s[killpos] == '1':
     //     s = s[:killpos] + s[killpos+1:]
     //     return sim(s, killpos % len(s), j)
-
+    char *new_str = malloc(sizeof(char) * (size-1));
+    int a = 0;
+    for (int i = 0; i < size; ++i) {
+      if (i == killpos) continue;
+      new_str[a++] = str[i];
+    }
+    bool ret = simula(new_str, size-1, killpos % (size-1), jump); 
+    free(new_str);
+    return ret;
   }
 
   return false;
@@ -52,19 +59,19 @@ int main() {
   // 
   // print(j)
 
-	char *buf = (char*) malloc(sizeof(char) * 255);
-	gets(buf);
-	int size = strlen(buf);
-	char *in = (char*) malloc(sizeof(char) * size);
-	memcpy(in, buf, size);
-	free(buf);
+  char *buf = (char*) malloc(sizeof(char) * 255);
+  gets(buf);
+  int size = strlen(buf);
+  char *in = (char*) malloc(sizeof(char) * size);
+  memcpy(in, buf, size);
+  free(buf);
 
-  int jump = 0;
+  int jump = 0, knife_position = 0;
 
   bool res = false;
   while (!res) {
     jump++;
-    res = simula(in, size, &jump);
+    res = simula(in, size, 0, &jump);
   }
 
   printf("%d\n", jump);
