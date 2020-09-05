@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int pula(int pos, int cont, string s) {
+int pula(size_t pos, int cont, string s) {
 	while (cont) {
 		pos++;
 		if ( pos == s.length() ) pos = 0;
@@ -13,7 +13,7 @@ int pula(int pos, int cont, string s) {
 
 int simula(string in, int jump, int count) {
 	// cout << "simula com jump: " << jump << endl;
-	int pos = 0;
+	size_t pos = 0;
 	int vivos = in.length();
 
 	while (count > 0) {
@@ -34,7 +34,7 @@ int main() {
 	// cout << "input: " << in << endl;
 	int res, jump = 0;
 	int ones = 0;
-	for (int i = 0; i < in.size(); ++i) if (in[i] == '1') ones++;
+	for (int i = 0; i < (int) in.size(); ++i) if (in[i] == '1') ones++;
 	do {
 		res = simula(in, jump, ones); // Entao aqui a gente ta colocando uma referencia, nao?
 		jump++;
