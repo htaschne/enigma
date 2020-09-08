@@ -8,8 +8,8 @@ typedef struct interval {
 } interval;
 
 int comp(const void *a, const void *b) {
-    interval *p = (interval*) a;
-    interval *q = (interval*) b;
+    const interval *p = (const interval*) a;
+    const interval *q = (const interval*) b;
     return p->lower - q->lower;
 }
 
