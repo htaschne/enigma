@@ -42,7 +42,7 @@ vector<Node*> getSurround(Node* u, int tx, int ty, int size_x, int size_y, char*
 	return v;
 }
 
-int main(int argc, char **argv) {
+int main() {
 
 	int size_x; int size_y; int xa; int ya; int xb; int yb;
 	cin >> size_x >> size_y;
@@ -78,14 +78,9 @@ int main(int argc, char **argv) {
 		Q.push(*ss);
 	}
 
-	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl;
-	Q.pop();
-	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl;
-	Q.pop();
-	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl;
-	Q.pop();
-	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl;
-	Q.pop();
-
+	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl; Q.pop();
+	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl; Q.pop();
+	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl; Q.pop();
+	cout << Q.top().x << " " << Q.top().y << " " << Q.top().f_cost << endl; Q.pop();
 }
 
