@@ -6,8 +6,6 @@
 
 using namespace std;
 
-int max_x = 0, max_y = 0, min_x = MAX, min_y = MAX;
-
 char G[MAX][MAX];
 
 void imprime() {
@@ -38,12 +36,6 @@ void pop( int *x, int *y, int *stp ) {
 }
 
 void explore( int x, int y ) {
-  max_x = max(x, max_x);
-  min_x = max(x, min_x);
-
-  max_y = max(y, max_y);
-  min_y = max(y, min_y);
-
   int passos = 0;
 
   while ( 1 ) {
@@ -68,17 +60,16 @@ void explore( int x, int y ) {
       case 'N': G[y - 1][x] = '-'; y -= 2; break;
       case 'W': G[y][x - 1] = '|'; x -= 2; break;
       case 'E': G[y][x + 1] = '|'; x += 2; break;
-      case '$': puts(""); return;
+      case '$': /*puts("");*/ return;
     }
   }
 }
 
 int main() {
-
   memset(G, '#', MAX*MAX);
   explore( MAX / 2, MAX / 2 );
 
-  auto prox = [&](int px, int py) {
+  auto portas = [&](int px, int py) {
     vector<pair<int, int>> pp;
     if (G[py][px+1] == '|') pp.push_back(make_pair(px+2, py));
     if (G[py][px-1] == '|') pp.push_back(make_pair(px-2, py));
@@ -87,30 +78,24 @@ int main() {
     return pp;
   };
 
-  auto bfs = [&](int px, int py) -> int {
-    set<pair<int, int>> seen;
+  // bfs
+  set<pair<int, int>> seen;
+  vector<pair<int, int>> Q = portas(MAX/2, MAX/2);
+  int depth = 0;
 
-    int depth = 0;
-    vector<pair<int, int>> Q = prox(px, py);
+  while (!Q.empty()) {
+    depth++;
+    vector<pair<int, int>> new_Q;
+    for (auto n : Q) {
+      if (seen.count(n))
+        continue;
+      seen.insert(n);
 
-    while (Q.size() != 0) {
-      // printf("%d\n", depth);
-      depth++;
-      vector<pair<int, int>> new_Q;
-      for (auto n : Q) {
-        if (seen.count(n))
-          continue;
-        seen.insert(n);
-
-        auto prx = prox(n.first, n.second);
-        for (auto &nn : prx) new_Q.push_back(nn);
-      }
-      Q = new_Q;
+      auto possiveis_caminhos = portas(n.first, n.second);
+      for (auto &pc : possiveis_caminhos) new_Q.push_back(pc);
     }
-    return --depth;
-  };
+    Q.swap(new_Q);
+  }
 
-  int resp = bfs( MAX/2, MAX/2 );
-  // imprime();
-  printf("%d\n", resp);
+  printf("%d\n", --depth);
 }
