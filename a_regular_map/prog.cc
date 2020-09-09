@@ -104,8 +104,6 @@ int main() {
   printf("%d\n", --depth);
 
   // part II
-  int resp = 0;
-  for (auto [k,v] : dist)
-    if (v >= 1000) resp++;
+  int resp = 0; for (auto [k,v] : dist) if (v >= 1000) resp++;
   printf("%d\n", resp);
 }
