@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <vector>
 #include <set>
+#include <map>
 
 #define MAX 500
 
@@ -83,19 +84,28 @@ int main() {
   vector<pair<int, int>> Q = portas(MAX/2, MAX/2);
   int depth = 0;
 
+  map<pair<int, int>, int> dist;
+
   while (!Q.empty()) {
     depth++;
     vector<pair<int, int>> new_Q;
     for (auto n : Q) {
       if (seen.count(n))
         continue;
+
       seen.insert(n);
+      dist[n] = depth;
 
       auto possiveis_caminhos = portas(n.first, n.second);
       for (auto &pc : possiveis_caminhos) new_Q.push_back(pc);
     }
     Q.swap(new_Q);
   }
-
   printf("%d\n", --depth);
+
+  // part II
+  int resp = 0;
+  for (auto [k,v] : dist)
+    if (v >= 1000) resp++;
+  printf("%d\n", resp);
 }
