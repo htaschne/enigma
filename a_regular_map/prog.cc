@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstdio>
 #include <vector>
 #include <set>
 
@@ -52,7 +52,7 @@ void explore( int x, int y ) {
 
     char ch;
     scanf( "%c", &ch );
-    printf( "%c", ch );
+    // printf( "%c", ch );
 
     switch ( ch ) {
       case ')':
@@ -73,42 +73,43 @@ void explore( int x, int y ) {
   }
 }
 
-vector<pair<int, int>> prox(int px, int py) {
-  vector<pair<int, int>> pp;
-  if (G[py][px+1] == '|') pp.push_back(make_pair(px+2, py));
-  if (G[py][px-1] == '|') pp.push_back(make_pair(px-2, py));
-  if (G[py+1][px] == '-') pp.push_back(make_pair(px, py+2));
-  if (G[py-1][px] == '-') pp.push_back(make_pair(px, py-2));
-  return pp;
-}
-
-int bfs(int px, int py) {
-  set<pair<int, int>> seen;
-
-  int depth = 0;
-  vector<pair<int, int>> Q = prox(px, py);
-
-  while (Q.size() != 0) {
-    // printf("%d\n", depth);
-    depth++;
-    vector<pair<int, int>> new_Q;
-    for (auto n : Q) {
-      if (seen.count(n))
-        continue;
-      seen.insert(n);
-
-
-      auto prx = prox(n.first, n.second);
-      for (auto &nn : prx) new_Q.push_back(nn);
-    }
-    Q = new_Q;
-  }
-  return depth - 1;
-}
-
 int main() {
+
   memset(G, '#', MAX*MAX);
   explore( MAX / 2, MAX / 2 );
+
+  auto prox = [&](int px, int py) {
+    vector<pair<int, int>> pp;
+    if (G[py][px+1] == '|') pp.push_back(make_pair(px+2, py));
+    if (G[py][px-1] == '|') pp.push_back(make_pair(px-2, py));
+    if (G[py+1][px] == '-') pp.push_back(make_pair(px, py+2));
+    if (G[py-1][px] == '-') pp.push_back(make_pair(px, py-2));
+    return pp;
+  };
+
+  auto bfs = [&](int px, int py) -> int {
+    set<pair<int, int>> seen;
+
+    int depth = 0;
+    vector<pair<int, int>> Q = prox(px, py);
+
+    while (Q.size() != 0) {
+      // printf("%d\n", depth);
+      depth++;
+      vector<pair<int, int>> new_Q;
+      for (auto n : Q) {
+        if (seen.count(n))
+          continue;
+        seen.insert(n);
+
+        auto prx = prox(n.first, n.second);
+        for (auto &nn : prx) new_Q.push_back(nn);
+      }
+      Q = new_Q;
+    }
+    return --depth;
+  };
+
   int resp = bfs( MAX/2, MAX/2 );
   // imprime();
   printf("%d\n", resp);
