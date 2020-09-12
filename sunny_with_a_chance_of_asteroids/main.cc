@@ -1,5 +1,5 @@
+
 #include <iostream>
-#include <iterator>
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -56,7 +56,7 @@ public:
 					break;
 				}
 				case PRT: {
-					printf("%d", memory[pc++]);
+					printf("%d\n", memory[memory[pc]]); // maybe this shouldn't add new line
 					break;
 				}
 				case HLT: {
@@ -68,33 +68,33 @@ public:
 	}
 };
 
-vector<string> getNextLineAndSplitIntoTokens(istream& str)
-{
-	vector<string>   result;
-	string				   line;
-	getline(str,line);
+void parseCSVIntoMem(string filename, vector<int> &mem) {
+	fstream input(filename);
 
-	stringstream		   lineStream(line);
-	string				   cell;
+	string line;
+	getline(input, line);
+	stringstream ss(line);
 
-	while(getline(lineStream,cell, ','))
-	{
-		result.push_back(cell);
+	for (int i; ss >> i;) {
+		mem.push_back(i);
+		if (ss.peek() == ',') ss.ignore();
 	}
-	// This checks for a trailing comma with no data after it.
-	if (!lineStream && cell.empty())
-	{
-		// If there was a trailing comma then add an empty element.
-		result.push_back("");
-	}
-	return result;
+
 }
 
 int main(int argc, char *argv[]) {
-	if (argc < 2) return 1;
+	if (argc < 2) {
+		fprintf(stderr, "usage: ./a.out <filename>\n");
+		return 1;
+	}
 
 	string filename = argv[1];
+	vector<int> mem;
+	parseCSVIntoMem(filename, mem);
+
+
+	IntCode ic (mem);
+	ic.run();
 
 	return 0;
 }
-
