@@ -13,13 +13,39 @@ int comp(const void *a, const void *b) {
     return p->lower - q->lower;
 }
 
-int main() {
-    int64_t n;
-    // FIXME: get the number of lines in the input
-    scanf("%lld", &n);
+int64_t countlines(char *filename) {
+    int64_t lines = 0;
 
-    interval *intervals = (interval*) malloc(sizeof(interval) * n);
+    FILE *fp = fopen(filename,"r");
+    if (!fp) {
+        fprintf(stderr, "could not open the file: %s", filename);
+        return lines;
+    }
+
+    while (!feof(fp)) {
+        if (fgetc(fp) == '\n') {
+            lines++;
+        }
+    }
+
+    fclose(fp);
+    return lines;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "error: expected file. usage: cat [filename] | ./a.out [filename]");
+        return 1;
+    }
+
+    int64_t n = countlines(argv[1]);
+    if (n == 0) {
+        fprintf(stderr, "invalid input. 0 lines found\n");
+        return 2;
+    }
+
     int64_t lower; int64_t upper;
+    interval *intervals = (interval*) malloc(sizeof(interval) * n);
     for (int i = 0; scanf("%lld-%lld", &lower, &upper) != EOF; ++i) {
         interval *it = (interval*) malloc(sizeof(interval));
         it->lower = lower;
