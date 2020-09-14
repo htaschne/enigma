@@ -26,6 +26,7 @@ int simula(char *in, int len, int jump, int count) {
 }
 
 int main() {
+  // parsing the input.
   char *buf = (char*) malloc(sizeof(char) * 255);
   gets(buf);
   int size = strlen(buf);
@@ -33,6 +34,8 @@ int main() {
   memcpy(in, buf, size);
   free(buf);
 
+  // try all values for jumps, returns the first possible solution (smallest jump).
+  // not sure if it halts.
   int res, jump = 0, ones = 0;
   for (int i = 0; i < size; ++i) if (in[i] == '1') ones++;
   char *current = (char*) malloc(sizeof(char) * size);
