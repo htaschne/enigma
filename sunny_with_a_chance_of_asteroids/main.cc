@@ -51,8 +51,8 @@ public:
 					break;
 				}
 				case STA: {
-					int input; cin >> input;
-					memory[pc++] = input;
+					int input; scanf("%d", &input); // doesn't work if enter 3. wtf?
+					memory[--pc] = input; // not sure why isn't it pc++ or just pc.
 					break;
 				}
 				case PRT: {
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
 	parseCSVIntoMem(filename, mem);
 
 
-	IntCode ic (mem);
+	IntCode ic(mem);
 	ic.run();
 
 	return 0;
