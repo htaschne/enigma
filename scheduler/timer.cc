@@ -20,13 +20,13 @@ public:
   }
 };
 
-// globals
-map<string, vector<string>> G;
-map<string, int> times;
-set<string> departures;
-set<string> arrivals;
-
 int main() {
+  // globals
+  map<string, vector<string>> G;
+  map<string, int> times;
+  set<string> departures;
+  set<string> arrivals;
+
   size_t procs;
   scanf("# Proc %ld", &procs);
   // printf("# Proc %d\n", procs);
