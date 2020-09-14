@@ -18,7 +18,7 @@ int64_t countlines(char *filename) {
 
     FILE *fp = fopen(filename,"r");
     if (!fp) {
-        fprintf(stderr, "could not open the file: %s", filename);
+        fprintf(stderr, "could not open the file: %s\n", filename);
         return lines;
     }
 
@@ -34,7 +34,7 @@ int64_t countlines(char *filename) {
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        fprintf(stderr, "error: expected file. usage: cat [filename] | ./a.out [filename]");
+        fprintf(stderr, "error: expected file. usage: cat [filename] | ./a.out [filename]]\n");
         return 1;
     }
 
