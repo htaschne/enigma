@@ -33,12 +33,16 @@ int64_t countlines(char *filename) {
 }
 
 int main(int argc, char *argv[]) {
+
     if (argc < 2) {
-        fprintf(stderr, "error: expected file. usage: cat [filename] | ./a.out [filename]]\n");
+        fprintf(stderr, "error, expected file.\n");
+        fprintf(stderr, "usage: cat [filename] | ./a.out [filename]]\n");
+        fprintf(stderr, "       cat [filename] | ./a.out [filename]] [number of lines]\n");
         return 1;
     }
 
-    int64_t n = countlines(argv[1]);
+    int64_t n = argc == 3 ? atoi(argv[2]) : countlines(argv[1]);
+
     if (n == 0) {
         fprintf(stderr, "invalid input. 0 lines found\n");
         return 2;
