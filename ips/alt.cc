@@ -6,7 +6,7 @@ int main() {
     using namespace std;
 
     // reading all intervals from input to a vector of intervals
-    int64_t lower; int64_t upper;
+    int64_t lower, upper;
     vector<pair<int64_t, int64_t>> intervals;
     while (scanf("%lld-%lld", &lower, &upper) != EOF) {
         intervals.push_back(make_pair(lower, upper));
@@ -20,8 +20,8 @@ int main() {
     auto current_upper = intervals[0].second;
     for (size_t i = 1; i < intervals.size(); ++i) {
         if (current_upper >= intervals[i].first &&
-           (current_upper = max(current_upper, intervals[i].second))) {
-                changed = true;
+                (current_upper = max(current_upper, intervals[i].second))) {
+            changed = true;
         } else {
             printf("%lld-%lld\n", current_lower, current_upper);
             current_lower = intervals[i].first;
