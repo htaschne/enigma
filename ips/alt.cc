@@ -13,9 +13,7 @@ int main() {
     }
 
     // sort the intervals by their lower bound.
-    sort(intervals.begin(), intervals.end(), [](auto a, auto b) {
-        return a.first < b.first;
-    });
+    sort(intervals.begin(), intervals.end());
 
     bool changed = false;
     auto current_lower = intervals[0].first;
