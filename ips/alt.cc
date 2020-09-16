@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <vector>
 #include <algorithm>
+// #include <execution> // multithread
 
 int main() {
     using namespace std;
@@ -14,6 +15,9 @@ int main() {
 
     // sort the intervals by their lower bound.
     sort(intervals.begin(), intervals.end());
+
+    // multithread version
+    // sort(execution::par_unseq, intervals.begin(), intervals.end());
 
     bool changed = false;
     auto current_lower = intervals[0].first;
