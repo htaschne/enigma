@@ -2,16 +2,18 @@
 
 using namespace std;
 
-int pula(size_t pos, int cont, string s) {
-	while (cont) {
-		pos++;
-		if ( pos == s.length() ) pos = 0;
-		if ( s[pos] != '+' ) cont--;
-	}
-	return pos;
-}
 
 int simula(string in, int jump, int count) {
+
+	auto pula = [&](size_t pos, int cont, string s) {
+		while (cont) {
+			pos++;
+			if ( pos == s.length() ) pos = 0;
+			if ( s[pos] != '+' ) cont--;
+		}
+		return pos;
+	};
+
 	// cout << "simula com jump: " << jump << endl;
 	size_t pos = 0;
 	int vivos = in.length();
