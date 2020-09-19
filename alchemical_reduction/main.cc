@@ -1,43 +1,52 @@
-#include <vector>
-#include <cstdio>
-#include <stack>
 #include <set>
+#include <vector>
+#include <stack>
+#include <iostream>
 
-int main() {
+auto main() -> int {
   using namespace std;
 
-  auto react = [&](const vector<char> &v, const char x) {
+  // given a polymer it reacts all it's units, possibly making it smaller.
+  // also it skips all polymer's units that equal the unit parameter.
+  auto react = [&](const vector<char> &polymer, const char unit) {
     stack<char> st;
-    for (auto &ch : v) {
-      if (ch == toupper(x) || ch == tolower(x)) continue;
+    for (auto &un : polymer) {
+      if (un == toupper(unit) || un == tolower(unit)) continue;
       if (st.size() == 0) {
-        st.push(ch);
+        st.push(un);
         continue;
       }
-
-      if ((st.top() == toupper(ch) || st.top() == tolower(ch)) && st.top() != ch)
+      // checks if the current unit will react with the top of the stack.
+      // either top = X and unit = x or top = x and unit = X. otherwise it's false
+      bool react_with_top = st.top() != un && (st.top() == toupper(un) || st.top() == tolower(un));
+      if (react_with_top) {
         st.pop();
-      else
-        st.push(ch);
+      } else {
+        st.push(un);
+      }
 
     }
-    return (int) st.size() - 1;
+    return st.size();
   };
 
-  vector<char> v; for (char ch; scanf("%c", &ch) != EOF;) v.push_back(ch);
+  // read the whole line (polymer) into the vector.
+  vector<char> polymer; for (char unit; cin >> unit;) polymer.push_back(unit);
 
   // part I
-  printf("%d\n", react(v, '\0'));
+  // react the input polymer and compute it's size.
+  // to react a polymer is to delete all pairs xX and Xx in it.
+  cout << react(polymer, '\0') << endl;
 
-  set<char> seen;
-  int best = numeric_limits<int>::max();
-  for (auto &ch : v) {
-    if (!seen.count(ch)) {
-      seen.insert(ch); seen.insert(toupper(ch)); seen.insert(tolower(ch));
-      best = min(best, react(v, ch));
+  // Part II
+  // generate all polymer's variations by deliting, at each iteration, one of
+  // the units type (say all the a's and A's) and find the one with the smallest size.
+  set<char> reacted;
+  auto best = polymer.size(); // worst case there's no reaction to be excecuted
+  for (auto &un : polymer) {
+    if (!reacted.count(un)) {
+      reacted.insert(toupper(un)); reacted.insert(tolower(un));
+      best = min(best, react(polymer, un));
     }
   }
-
-  printf("%d\n", best);
-  return 0;
+  cout << best << endl;
 }
