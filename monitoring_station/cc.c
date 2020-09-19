@@ -23,15 +23,15 @@ void killTodoMundo(char GG[MAX][MAX], int lin, int col, int var_lin, int var_col
 }
 
 /*
-	 para largura = 1 a ???
-	 para lin = y - largura até y + largura
-	 para col = x - largura até x + largura
-	 se lin, col tá fora da matriz -> continue;
-	 vê quem tá em ( lin, col )
-	 e mata os que se ve depois dele
-	 */
+	para largura = 1 a ???
+	para lin = y - largura até y + largura
+	para col = x - largura até x + largura
+	se lin, col tá fora da matriz -> continue;
+	vê quem tá em ( lin, col )
+	e mata os que se ve depois dele
+	*/
 
-int station(char GG[MAX][MAX], int lin, int col) { 
+int station(char GG[MAX][MAX], int lin, int col) {
 	int resposta = 0;
 	for (int larg = 1; larg < MAX; larg++) { // conrado tem quase certeza disso. Isso!
 		for(int l = lin - larg; l <= lin + larg; l++ ) {
@@ -54,7 +54,7 @@ int main() {
 			scanf("%c", &(G[lin][col]));
 
 
-	int best,x,y = 0; 
+	int best,x,y = 0;
 	for (int lin = 0; lin < MAX; ++lin) {
 		for (int col = 0; col < MAX; ++col) {
 			if(G[lin][col] != '#') continue;
@@ -75,20 +75,20 @@ int main() {
 
 	/*
 
-		 A -> (3,1) | (6,2) | (9,3)  -> ( +3, +1 )   ( dx, dy )
-		 B -> (3,2) | (6,4) | (9,6)  -> ( +3, +2 )   
+		A -> (3,1) | (6,2) | (9,3)  -> ( +3, +1 )	 ( dx, dy )
+		B -> (3,2) | (6,4) | (9,6)  -> ( +3, +2 )
 
-		 012345678j9
-		 0#.........
-		 1...AX..... 
-		 2...B..a.x. 
-		 3.EDCG....a
-		 4..F.c.b...
-		 5.....c....
-		 6..efd.c.gb
-		 7.......c..
-		 8....f...c.
-		 9...e..d..c
+		012345678j9
+		0#.........
+		1...AX.....
+		2...B..a.x.
+		3.EDCG....a
+		4..F.c.b...
+		5.....c....
+		6..efd.c.gb
+		7.......c..
+		8....f...c.
+		9...e..d..c
 
 */
 

@@ -8,8 +8,8 @@ using namespace std;
 
 void parseInput(string filename, int *xa, int *ya, int *xb, int *yb,
 		int *size_x, int *size_y, vector<string> &lines) {
-	std::fstream input(filename);
 
+	fstream input(filename);
 	bool foundA = false;
 	bool foundB = false;
 
@@ -38,25 +38,15 @@ void parseInput(string filename, int *xa, int *ya, int *xb, int *yb,
 vector<tuple<int, int, char>> neighborhood(int x, int y, int size_x, int size_y,
 		vector<string> &lines) {
 	vector<tuple<int, int, char>> ret;
-	if ( x - 1 > 0      && lines[y][x - 1] != '#' )  ret.push_back(make_tuple(x - 1, y, lines[y][x - 1]));
-	if ( x + 1 < size_x && lines[y][x + 1] != '#' )  ret.push_back(make_tuple(x + 1, y, lines[y][x + 1]));
-	if ( y - 1 > 0      && lines[y - 1][x] != '#' )  ret.push_back(make_tuple(x, y - 1, lines[y - 1][x]));
-	if ( y + 1 < size_y && lines[y + 1][x] != '#' )  ret.push_back(make_tuple(x, y + 1, lines[y + 1][x]));
+	if (x - 1 > 0      && lines[y][x - 1] != '#') ret.push_back(make_tuple(x - 1, y, lines[y][x - 1]));
+	if (x + 1 < size_x && lines[y][x + 1] != '#') ret.push_back(make_tuple(x + 1, y, lines[y][x + 1]));
+	if (y - 1 > 0      && lines[y - 1][x] != '#') ret.push_back(make_tuple(x, y - 1, lines[y - 1][x]));
+	if (y + 1 < size_y && lines[y + 1][x] != '#') ret.push_back(make_tuple(x, y + 1, lines[y + 1][x]));
 	return ret;
 }
 
 int bfs(int x, int y, int size_x, int size_y, vector<string> &lines) {
 	set<tuple<int, int, char>> seen;
-
-	// // why won't this works?
-	// auto neighborhood = [&] (int x, int y, int size_x, int size_y, vector<string> &lines) -> vector<tuple<int, int, char>> {
-	// 	vector<tuple<int, int, char>> ret;
-	// 	if ( x - 1 > 0      && lines[y][x - 1] != '#' )  ret.push_back(make_tuple(x - 1, y, lines[y][x - 1]));
-	// 	if ( x + 1 < size_x && lines[y][x + 1] != '#' )  ret.push_back(make_tuple(x + 1, y, lines[y][x + 1]));
-	// 	if ( y - 1 > 0      && lines[y - 1][x] != '#' )  ret.push_back(make_tuple(x, y - 1, lines[y - 1][x]));
-	// 	if ( y + 1 < size_y && lines[y + 1][x] != '#' )  ret.push_back(make_tuple(x, y + 1, lines[y + 1][x]));
-	// 	return ret;
-	// };
 
 	auto neighbors = neighborhood(x, y, size_x, size_y, lines);
 	vector<tuple<int, int, char>> Q;
@@ -86,11 +76,9 @@ int bfs(int x, int y, int size_x, int size_y, vector<string> &lines) {
 }
 
 int main(int argc, char **argv) {
-	// filename
 	std::string filename = argc > 1 ? argv[1] : "0.in";
-	// var declarations
-	int xa; int ya; int xb; int yb; int size_x; int size_y; vector<string> lines;
 
+	int xa; int ya; int xb; int yb; int size_x; int size_y; vector<string> lines;
 	parseInput(filename, &xa, &ya, &xb, &yb, &size_x, &size_y, lines);
 
 	int resp = bfs(xa, ya, size_x, size_y, lines);

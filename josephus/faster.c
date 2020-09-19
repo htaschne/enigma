@@ -17,7 +17,7 @@ bool simula(char *str, int size, int knife_position, int *jump, int ones) {
     strncpy(new_str, str, killpos);
     strncpy(((char*)new_str)+killpos, ((char*)str)+killpos+1, size-1-killpos);
 
-    bool ret = simula(new_str, size-1, killpos % (size-1), jump, ones - 1); 
+    bool ret = simula(new_str, size-1, killpos % (size-1), jump, ones - 1);
     free(new_str);
     return ret;
   }

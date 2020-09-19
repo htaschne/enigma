@@ -37,3 +37,4 @@ int main() {
     // print the last interval, if it exists.
     if (changed) printf("%lld-%lld\n", current_lower, current_upper);
 }
+
