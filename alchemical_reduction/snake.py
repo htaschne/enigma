@@ -1,14 +1,13 @@
 
 from typing import List, Set
 
-
 def react(polymer: List[str], unit: str = '') -> int:
     ''' given a polymer it reacts all it's units, possibly making it smaller.
     also it skips all polymer's units that equal the unit parameter. '''
 
     stack: List[str] = []
     for un in polymer:
-        if un == unit.upper or un == unit.lower:
+        if un == unit.upper() or un == unit.lower():
             continue
         if stack == []:
             stack.append(un)
@@ -27,13 +26,13 @@ def react(polymer: List[str], unit: str = '') -> int:
 
 if __name__ == "__main__":
     import sys
-    filename = sys.argv[1] if len(sys.argv) > 2 else "1.in"
+    filename = sys.argv[1] if len(sys.argv) > 2 else "0.in"
     # read the whole line (polymer) into the list
     polymer: List[str] = open(filename).readline().rstrip()
 
-    ## part I
-    ## react the input polymer and compute it's size.
-    ## to react a polymer is to delete all pairs xX and Xx in it.
+    # part I
+    # react the input polymer and compute it's size.
+    # to react a polymer is to delete all pairs xX and Xx in it.
     print(react(polymer))
 
     # Part II
