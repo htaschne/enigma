@@ -18,8 +18,7 @@ auto main() -> int {
       }
       // checks if the current unit will react with the top of the stack.
       // either top = X and unit = x or top = x and unit = X. otherwise it's false
-      bool react_with_top = st.top() != un && (st.top() == toupper(un) || st.top() == tolower(un));
-      if (react_with_top) {
+      if (st.top() != un && (st.top() == toupper(un) || st.top() == tolower(un))) {
         st.pop();
       } else {
         st.push(un);
@@ -29,7 +28,7 @@ auto main() -> int {
     return st.size();
   };
 
-  // read the whole line (polymer) into the vector.
+  // read the whole line (polymer) into a vector of chars.
   vector<char> polymer; for (char unit; cin >> unit;) polymer.push_back(unit);
 
   // part I
@@ -49,4 +48,5 @@ auto main() -> int {
     }
   }
   cout << best << endl;
+  return 0;
 }
