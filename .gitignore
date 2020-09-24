@@ -3,7 +3,6 @@
 *.swp*
 *.png
 *.class
-*.java
 include
 __pycache__
 casos/
