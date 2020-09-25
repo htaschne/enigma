@@ -32,7 +32,7 @@ public class Main {
     public static void main(String[] args) {
         // lend o input
         var in = new Scanner(System.in);
-        var polymer = in.nextLine().toCharArray();
+        char[] polymer = in.nextLine().toCharArray();
         in.close();
 
         // part I
