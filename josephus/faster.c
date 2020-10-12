@@ -13,7 +13,7 @@ bool simula(char *str, int size, int knife_position, int *jump, int ones) {
   if (str[killpos] == '1') {
     // if str were a linked list the remove at index would be O(1)
     // currently it's O(n), where n = len(str)
-    char *new_str = malloc(sizeof(char) * (size-1));
+    char *new_str = (char*) malloc(sizeof(char) * (size-1));
     strncpy(new_str, str, killpos);
     strncpy(((char*)new_str)+killpos, ((char*)str)+killpos+1, size-1-killpos);
 
@@ -33,14 +33,14 @@ int main() {
   memcpy(in, buf, size);
   free(buf);
 
-  int jump = 0, knife_position = 0, ones = 0;
+  int jump = 0, ones = 0;
 
   for (int i=0;i<size;++i) if (in[i]=='1') ones++;
 
   bool res = false;
   while (!res) {
     jump++;
-    res = simula(in, size, 0, &jump, ones);
+    res = simula(in, size, 0, &jump, ones); // knife always start at 0.
   }
 
   printf("%d\n", --jump);

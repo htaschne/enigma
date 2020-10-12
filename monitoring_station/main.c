@@ -42,7 +42,7 @@ int mdc(int a, int b) {
 	return a;
 }
 
-int station(char GG[MAX][MAX], int lin, int col) { 
+int station(char GG[MAX][MAX], int lin, int col) {
 	int resposta = 0;
 	for (int larg = 1; larg < MAX; larg++) {
 		for (int l = lin - larg; l <= lin + larg; l++ ) {
@@ -59,7 +59,7 @@ int station(char GG[MAX][MAX], int lin, int col) {
 					dx /= mm;
 					dy /= mm;
 					// imprime(GG);
-					killTodoMundo(GG, lin, col, dy, dx); 
+					killTodoMundo(GG, lin, col, dy, dx);
 					// imprime(GG);
 				}
 			}

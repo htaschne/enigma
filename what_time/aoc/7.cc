@@ -23,6 +23,7 @@ int main() {
   set_union(arrivals.begin(), arrivals.end(),
             departures.begin(), departures.end(),
             back_inserter(all));
+
   // TOPOSORT
   vector<char> L(all.size());
   auto it = S.begin();

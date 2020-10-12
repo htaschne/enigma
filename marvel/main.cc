@@ -56,7 +56,7 @@ int bfs(int x, int y, int size_x, int size_y, vector<string> &lines) {
 	int depth = 1;
 	while (Q.size() != 0) {
 		vector<tuple<int, int, char>> new_Q;
-		for (int i = 0; i < Q.size(); i++) {
+		for (size_t i = 0; i < Q.size(); i++) {
 			auto n = Q[i];
 			if (get<2>(n) == 'B') {
 				cout << get<0>(n) << " " << get<1> (n) << endl;
@@ -76,7 +76,7 @@ int bfs(int x, int y, int size_x, int size_y, vector<string> &lines) {
 }
 
 int main(int argc, char **argv) {
-	std::string filename = argc > 1 ? argv[1] : "0.in";
+	auto filename = argc > 1 ? argv[1] : "0.in";
 
 	int xa; int ya; int xb; int yb; int size_x; int size_y; vector<string> lines;
 	parseInput(filename, &xa, &ya, &xb, &yb, &size_x, &size_y, lines);

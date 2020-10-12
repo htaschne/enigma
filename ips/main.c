@@ -14,6 +14,7 @@ int comp(const void *a, const void *b) {
 }
 
 int64_t countlines(char *filename) {
+    // maybe it should also parse the input
     int64_t lines = 0;
 
     FILE *fp = fopen(filename,"r");

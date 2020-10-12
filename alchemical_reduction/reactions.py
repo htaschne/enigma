@@ -2,8 +2,8 @@
 from typing import List, Set
 
 def react(polymer: List[str], unit: str = '') -> int:
-    ''' given a polymer it reacts all it's units, possibly making it smaller.
-    also it skips all polymer's units that equal the unit parameter. '''
+    # given a polymer it reacts all it's units, possibly making it smaller.
+    # also it skips all polymer's units that equal the unit parameter.
 
     stack: List[str] = []
     for un in polymer:
@@ -17,13 +17,13 @@ def react(polymer: List[str], unit: str = '') -> int:
         # either top = X and unit = x (Xx) or top = x and unit = X (xX).
         # otherwise it's false
         top = stack[-1]
+
         if top != un and (top == un.upper() or top == un.lower()):
             stack.pop()
         else:
             stack.append(un)
 
     return len(stack)
-
 
 if __name__ == "__main__":
     import sys
