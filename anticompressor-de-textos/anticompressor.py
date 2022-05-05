@@ -3,7 +3,7 @@ import sys
 from collections import Counter
 
 
-def react(root, dec):
+def react(root: str, dec: dict[str, str]) -> int:
     current = Counter(dec[root])
     while True:
         new = Counter()
@@ -19,7 +19,7 @@ def react(root, dec):
 
         current = new
 
-    return current
+    return sum(current.values())
 
 
 def main():
@@ -34,7 +34,6 @@ def main():
         if len(line.strip().split(" ")) > 1
     }
 
-
     departures, arrivals = set(), set()
     for k in dec:
         departures.add(k)
@@ -43,8 +42,9 @@ def main():
     root = list(departures - arrivals)[0]
     print("start:", root, end="; ")
 
-    decompressed = react(root, dec)
-    print("len:", sum(decompressed.values()))
+    expanded_length = react(root, dec)
+    print("len:", expanded_length)
 
 
-main()
+if __name__ == '__main__':
+    main()
